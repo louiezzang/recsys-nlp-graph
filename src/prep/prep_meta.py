@@ -17,10 +17,10 @@ def get_category_lvl(category_list: list, lvl=0) -> str:
 
 
 def get_categories(df: pd.DataFrame) -> pd.DataFrame:
-    df['category_lvl_1'] = df['categories'].apply(get_category_lvl, args=(0,))
-    df['category_lvl_2'] = df['categories'].apply(get_category_lvl, args=(1,))
-    df['category_lvl_3'] = df['categories'].apply(get_category_lvl, args=(2,))
-    df['category_lvl_4'] = df['categories'].apply(get_category_lvl, args=(3,))
+    df['category_lvl_1'] = df['category'].apply(get_category_lvl, args=(0,))
+    df['category_lvl_2'] = df['category'].apply(get_category_lvl, args=(1,))
+    df['category_lvl_3'] = df['category'].apply(get_category_lvl, args=(2,))
+    df['category_lvl_4'] = df['category'].apply(get_category_lvl, args=(3,))
     logger.info('Categories lvl 1 - 4 prepared')
 
     return df
@@ -28,11 +28,12 @@ def get_categories(df: pd.DataFrame) -> pd.DataFrame:
 
 def get_meta(df: pd.DataFrame) -> pd.DataFrame:
     # Update to reflect if relationship exist
-    df['related'] = np.where(df['related'].isnull(), 0, 1)
+    df['related'] = np.where(df['also_buy'].isnull() | df['also_view'].isnull(), 0, 1)
+    df.drop(columns=['also_buy', 'also_view'], inplace=True)
 
     # Prep categories
-    df['categories'] = df['categories'].apply(eval)
-    df['categories'] = df['categories'].apply(lambda x: x[0])  # Get first category only
+    df['category'] = df['category'].apply(eval)
+    df['category'] = df['category'].apply(lambda x: x[0] if x else '')  # Get first category only
     df = get_categories(df)
 
     # Prep title and description
@@ -47,7 +48,7 @@ if __name__ == '__main__':
     parser.add_argument('write_path', type=str, help='Path to output csv (of metadata')
     args = parser.parse_args()
 
-    META_COLS = ['asin', 'categories', 'title', 'description', 'price', 'brand', 'related']
+    META_COLS = ['asin', 'category', 'title', 'description', 'price', 'brand', 'also_buy', 'also_view']
     df = pd.read_csv(args.read_path, error_bad_lines=False, warn_bad_lines=True,
                      dtype={'asin': 'str', 'title': 'str', 'brand': 'str'},
                      usecols=META_COLS)

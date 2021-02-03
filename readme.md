@@ -1,5 +1,9 @@
 # recsys-nlp-graph
 
+```
+$ pipenv install --skip-lock
+```
+
 **Undocumented** code for personal project on simple recsys via matrix factorization (part 1), and nlp and graph techniques (part 2). Sharing as part of meet-up follow along.
 
 Associated articles:  
@@ -12,8 +16,8 @@ Talk and Slides:
 
 ## Data
 
-Electronics and books data from the [Amazon dataset (May 1996 – July 2014)](http://jmcauley.ucsd.edu/data/amazon/) was used. Here's how an example JSON entry looks like.
-
+- Electronics and books data from the [Amazon dataset (May 1996 – July 2014)](http://jmcauley.ucsd.edu/data/amazon/) was used. Here's how an example JSON entry looks like.
+- The dataset url is changed to this [link](https://nijianmo.github.io/amazon/index.html).
 ```
 { 
 "asin": "0000031852",

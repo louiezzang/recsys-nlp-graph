@@ -31,9 +31,10 @@ def parse_json_to_df(path: str) -> pd.DataFrame:
     df = pd.DataFrame.from_dict(df_dict, orient='index')
 
     # Lowercase
-    df['related'] = df['related'].astype(str)
-    df['categories'] = df['categories'].astype(str)
-    df['salesRank'] = df['salesRank'].astype(str)
+    df['also_buy'] = df['also_buy'].astype(str)
+    df['also_view'] = df['also_view'].astype(str)
+    df['category'] = df['category'].astype(str)
+    df['salesRank'] = ""
     df = lowercase_df(df)
 
     return df

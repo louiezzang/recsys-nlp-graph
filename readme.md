@@ -1,42 +1,48 @@
 # recsys-nlp-graph
 
-```
-$ pipenv install --skip-lock
-```
-
+## Overview
 **Undocumented** code for personal project on simple recsys via matrix factorization (part 1), and nlp and graph techniques (part 2). Sharing as part of meet-up follow along.
 
 Associated articles:  
 - Part 1: [Building a Strong Baseline Recommender in PyTorch](https://eugeneyan.com/writing/recommender-systems-baseline-pytorch/)  
 - Part 2: [Beating the Baseline Recommender with Graph & NLP in Pytorch](https://eugeneyan.com/writing/recommender-systems-graph-and-nlp-pytorch/)
+- Part 2 (Korean translated version): [그래프 & 자연어처리 기법으로 추천 시스템 개발하기 - pytorch](https://myeonghak.github.io/graph%20neural%20networks/recommender%20systems/Beating-the-baseline-recommender-using-Graph-and-NLP-techniques-in-PyTorch/)
 
 Talk and Slides:  
 - [DataScience SG Meetup - RecSys, Beyond the Baseline](https://eugeneyan.com/speaking/recommender-systems-beyond-the-baseline-talk/)  
 - [Slideshare](https://www.slideshare.net/eugeneyan/recommender-systems-beyond-the-useritem-matrix)
 
+
+## Installation
+```
+$ pipenv install --skip-lock
+```
+
 ## Data
 
 - Electronics and books data from the [Amazon dataset (May 1996 – July 2014)](http://jmcauley.ucsd.edu/data/amazon/) was used. Here's how an example JSON entry looks like.
 - The dataset url is changed to this [link](https://nijianmo.github.io/amazon/index.html).
-```
+
+Old version
+```json
 { 
 "asin": "0000031852",
 "title": "Girls Ballet Tutu Zebra Hot Pink",
 "price": 3.17,
 "imUrl": "http://ecx.images-amazon.com/images/I/51fAmVkTbyL._SY300_.jpg",
-"related”:
+"related":
     { "also_bought":[
 		  	"B00JHONN1S",
 		  	"B002BZX8Z6",
 		  	"B00D2K1M3O", 
-		  	...
+		  	"...",
 		  	"B007R2RM8W"
                     ],
       "also_viewed":[ 
 		  	"B002BZX8Z6",
 		  	"B00JHONN1S",
 		  	"B008F0SU0Y",
-		  	...
+		  	"...",
 		  	"B00BFXLZ8M"
                      ],
       "bought_together":[ 
@@ -54,6 +60,39 @@ Talk and Slides:
 	      "Dance"
 	    ]
     ]
+}
+```
+New version
+```json
+{
+  "category": [
+    "Gift Cards",
+    "Gift Cards"
+  ],
+  "tech1": "",
+  "description": [
+    "Gift card for the purchase of goods or services at Serendipity 3 in New York City only. Not valid for online purchases.",
+    "Statements regarding dietary supplements have not been evaluated by the FDA and are not intended to diagnose, treat, cure, or prevent any disease or health condition."
+  ],
+  "fit": "",
+  "title": "Serendipity 3 $100.00 Gift Card",
+  "also_buy": [],
+  "image": [],
+  "tech2": "",
+  "brand": "Serendipity 3",
+  "feature": [],
+  "rank": [],
+  "also_view": [],
+  "details": {
+    "\n    Product Dimensions: \n    ": "3.4 x 2.1 inches ; 1.44 ounces",
+    "Shipping Weight:": "3 ounces",
+    "ASIN: ": "B001BKEWF2"
+  },
+  "main_cat": "Grocery",
+  "similar_item": "",
+  "date": "",
+  "price": "",
+  "asin": "B001BKEWF2"
 }
 ```
 

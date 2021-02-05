@@ -39,7 +39,7 @@ def train_embeddings(sequences, workers, dimension=128, window=5, min_count=1, n
 
     # Train model (No need to retrain model as initialization includes training)
     # model.train(sequences, total_examples=len(sequences), epochs=epochs)
-    # logger.info('Model trained!')
+        # logger.info('Model trained!')
 
     return model
 

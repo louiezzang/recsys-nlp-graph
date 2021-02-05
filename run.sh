@@ -13,7 +13,7 @@ python -m src.prep.prep_graph_samples data/books_edges_train.edgelist data/books
 python -m src.ml.train_node2vec_embeddings data/books_edges_train.edgelist data/books_embeddings.kv
 
 # Works fine with multiprocess
-python -m src.ml.train_gensim_embedding data/books_sequences_sample.npy 8
+python -m src.ml.train_gensim_embedding data/books_sequences.npy 8
 
 # PyTorch
 # For dev testing

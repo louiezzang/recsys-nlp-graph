@@ -21,7 +21,8 @@ initial_lr = 0.025
 
 # Torch parameters
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-torch.cuda.set_device(1)  # Set to use 2nd GPU
+if torch.cuda.is_available():
+    torch.cuda.set_device(1)  # Set to use 2nd GPU
 logger.info('Device: {}, emb_dim: {}, epochs: {}, initial_lr: {}'.format(device, emb_dim, epochs, initial_lr))
 
 if __name__ == '__main__':
@@ -54,6 +55,8 @@ if __name__ == '__main__':
 
     # Initialize model
     skipgram = SkipGram(sequences.n_unique_tokens, emb_dim).to(device)
+
+    print("*** skipgram.parameters() = {}".format(skipgram.parameters()))
 
     # Train loop
     optimizer = optim.SparseAdam(skipgram.parameters(), lr=initial_lr)

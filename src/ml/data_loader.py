@@ -29,6 +29,7 @@ class Sequences:
         self.n_unique_tokens = 0
 
         self.sequences = np.load(sequence_path).tolist()
+        print("*** sequences = {}".format(self.sequences))
         self.n_sequences = len(self.sequences)
         logger.info('Sequences loaded (length = {:,})'.format(self.n_sequences))
 
